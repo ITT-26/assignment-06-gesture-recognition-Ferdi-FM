@@ -79,8 +79,13 @@ pip install -r requirements.txt
     | **_S_** | Skips the current spell |
     | **_Q_** | Closes the Window |
 
-    <br>
-    <br>
+<br>
+
+# 04 Study
+I wanted to take part in it on Tuesday 16.6 but sady Michael got sick, so I will participate next week
+    
+<br>
+<br>
 
 # Citation:
 - Harry-Potter and the philosophers stone spell effects cut from: https://www.youtube.com/shorts/sxUkyJz9kEc   
