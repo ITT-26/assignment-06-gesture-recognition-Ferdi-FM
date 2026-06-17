@@ -58,13 +58,13 @@ pip install -r requirements.txt
 3. Everything is in there, the result/discussion is in the last cell
     > Also added some images from conf_matrices of the different models i made
 
-# 03 Nostalgia Recognizer
+# 03 Spell Recognizer
 
 1. Start the Game 
     ````
     py -m gesture_application.py
     ````
-2. For full nostalgia make sure to have sound on
+2. Make sure to have sound on
 3. In the code you can theoretically change SPELL_PATH to the easy one which recognizes gestures better by using more templates
    For the Hard_Mode i traced the gestures you can see directly and left it like this since the original game was also really hard!
 3. Trace the spell you see on the screen

@@ -24,7 +24,7 @@ def transformForRecognition(points):
 
     return translated
 
-def saveAsXml(shape_name, points, windowHeight, duration, path = "datasets/my_logs/s01/medium"):
+def saveAsXml(shape_name, points, windowHeight, path = "datasets/my_logs/s01/medium"):
     if not os.path.exists(path):
         os.makedirs(path)
 
@@ -39,6 +39,8 @@ def saveAsXml(shape_name, points, windowHeight, duration, path = "datasets/my_lo
     gesture = ET.Element("Gesture")
     now = datetime.now()
 
+    duration = points[-1][2]
+
     gesture.set("Name", shape_name)
     gesture.set("Subject", "1")
     gesture.set("Speed", "medium")
@@ -50,13 +52,14 @@ def saveAsXml(shape_name, points, windowHeight, duration, path = "datasets/my_lo
     gesture.set("Date", now.strftime("%A, %B %d, %Y"))
     gesture.set("TimeOfDay", now.strftime("%I:%M:%S %p"))
 
-    for x, y in points:
+    for x, y, t in points:
         pt = ET.SubElement(gesture, "Point")
         pt.set("X", str(int(x//3)))
         pt.set("Y", str(int((windowHeight - y)//3)))
-        pt.set("T", "0")
+        pt.set("T", str(t))
 
     tree = ET.ElementTree(gesture)
+    ET.indent(tree, space="    ", level=0)
     tree.write(filename, encoding="utf-8", xml_declaration=True)
 
 def recognize(points, windowHeight, path = SAVE_PATH):  
@@ -184,7 +187,10 @@ def resample(points, n=64):
             qx = points[i - 1][0] + t * (points[i][0] - points[i - 1][0])
             qy = points[i - 1][1] + t * (points[i][1] - points[i - 1][1])
 
-            q = (qx, qy)
+            if len(points[0]) > 2:
+                q = (qx, qy, points[i][2])
+            else:
+                q = (qx, qy)
 
             new_points.append(q)
             points[i] = q
